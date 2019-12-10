@@ -9,7 +9,7 @@
     "watch": "webpack -w --config webpack.dev.js",
     "lint": "tslint 'src/**/*.{ts, tsx}'"
   },
-  "author": "Joe Martella",
+  "author": "Tzach Bonfil",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "0.0.60",
