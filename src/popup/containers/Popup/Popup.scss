@@ -1,0 +1,27 @@
+@import "./../../../style.scss";
+
+
+// Chrome applies an 8px margin by default (gross).
+body {
+    margin: 0px;
+}
+
+.popupContainer {
+    @include flex-column;
+    align-items     : center;
+    background-color: #eee;
+    color           : $master-slack;
+    font-size       : 10px;
+    height          : 15rem;
+    width           : 20rem;
+    justify-content : center;
+
+    h1 {
+        filter                 : drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
+        background             : linear-gradient(90deg, #15c9c0 0%, #2a9af5 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    button {}
+}

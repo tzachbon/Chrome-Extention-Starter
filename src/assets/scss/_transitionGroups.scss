@@ -1,0 +1,96 @@
+
+@import "./globals";
+
+
+
+.FadeAnimation-enter {
+  opacity: 0.01;
+  &.FadeAnimation-enter-active{
+    opacity: .99;
+    @include transition(opacity $toggleMenuTransition);
+  }
+}
+.FadeAnimation-leave{
+  opacity: .99;
+  &.FadeAnimation-leave-active{
+    opacity: 0.01;
+    @include transition(opacity $toggleMenuTransition);
+  }
+}
+
+
+
+
+//from small to full
+.ScaleFromSmallAnimation-enter {
+  opacity: 0.01;
+  @include transform(scale(.8));
+  &.ScaleFromSmallAnimation-enter-active{
+    opacity: .99;
+    @include transform(scale(1));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
+
+
+.ScaleFromSmallAnimation-leave{
+  opacity: .99;
+  @include transform(scale(1));
+  &.ScaleFromSmallAnimation-leave-active{
+    opacity: 0.01;
+    @include transform(scale(.8));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
+
+
+
+//from big to full
+
+.ScaleFromBigAnimation-enter {
+  opacity: 0.01;
+  @include transform(scale(1.05));
+  &.ScaleFromBigAnimation-enter-active{
+    opacity: .99;
+    @include transform(scale(1));
+    @include transition(all $toggleMenuTransition  $easing);
+  }
+}
+
+
+.ScaleFromBigAnimation-leave{
+  opacity: .99;
+  @include transform(scale(1));
+  &.ScaleFromBigAnimation-leave-active{
+    opacity: 0.01;
+    @include transform(scale(1.05));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
+
+
+
+//from bottom
+.FromBottomAnimation-enter {
+  opacity: 0.01;
+  @include transform(translateY(100px));
+  &.FromBottomAnimation-enter-active{
+    opacity: .99;
+    @include transform(translateY(0));
+    @include transition(all .5s $easing);
+  }
+}
+
+
+.FromBottomAnimation-leave{
+  opacity: .99;
+  @include transform(translateY(0));
+  &.FromBottomAnimation-leave-active{
+    opacity: 0.01;
+    @include transform(translateY(-100px));
+    @include transition(all .5s $easing);
+  }
+}
+
+
+

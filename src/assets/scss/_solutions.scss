@@ -1,0 +1,148 @@
+
+@import './globals';
+
+
+.SolutionPage{
+
+	.SolutionPage-hero{
+		padding-top: 18vh;
+		margin-bottom: 20vh;
+		color: $grey-dark;
+		position: relative;
+		&.white{
+			color: #fff;
+		}
+		h1{
+			@include animation(softFromTop .5s .9s $easing both);
+			font-size: 7.2rem;
+			@media #{$media-desktop-small} {
+				font-size: 6.2rem;
+			}
+			@media #{$media-tablet-portrait} {
+				font-size: 5.2rem;
+			}
+			@media #{$media-phone-landscape} {
+				font-size: 4.2rem;
+			}
+			&:after{
+				content: '';
+				display: block;
+				background-color: $green;
+				width: 50px;
+				height: 1px;
+				margin: 15px 0 25px;
+				@media #{$media-phone-landscape} {
+					margin: 10px 0 25px;
+				}
+			}
+		}
+		p{
+			@include animation(softFromTop .5s .7s $easing both);
+			max-width: 380px;
+			font-size: 1.9rem;
+			margin-bottom: 50px;
+			@media #{$media-tablet-portrait} {
+				font-size: 1.8rem;
+			}
+			@media #{$media-phone-landscape} {
+				font-size: 1.7rem;
+				margin-bottom: 30px;
+			}
+			&.wide{
+				max-width: 510px;
+			}
+		}
+	}
+
+
+
+	.SolutionPage-content{
+		background-color: #fff;
+	}
+
+	.SolutionPage-dark-blue{
+		background-color: $grey-dark;
+		padding: 95px 0;
+		color: #fff;
+		@media #{$media-tablet-portrait} {
+			padding: 80px 0;
+		}
+		@media #{$media-phone-landscape} {
+			padding: 60px 0;
+		}
+	}
+
+
+
+	.two-columns{
+		@include display-flex;
+		@include flex-wrap(wrap);
+		@include justify-content(space-between);
+		@media #{$media-tablet-portrait} {
+			padding: 80px 0;
+		}
+		@media #{$media-phone-landscape} {
+			padding: 60px 20px;
+			display: block;
+		}
+		p{
+			font-size: 2rem;
+			width: 45%;
+			@media #{$media-tablet-portrait} {
+				font-size: 1.8rem;
+			}
+			@media #{$media-phone-landscape} {
+				font-size: 1.7rem;
+				width: 100%;
+				&:first-of-type{
+					margin-bottom: 50px;
+				}
+			}
+		}
+		.line{
+			width: 1px;
+			border-right: 1px solid $white-light-mid;
+			@media #{$media-phone-landscape} {
+				display: none;
+			}
+		}
+	}
+
+
+
+
+	p.SolutionPage-txt{
+		font-size: 2rem;
+		max-width: 780px;
+
+		span{
+			z-index: 1;
+			position: relative;
+			&:before{
+				opacity: .7;
+				content: '';
+				position: absolute;
+				top: 60%;
+				left: -5px;
+				right: 0;
+				@include horizontal-gradient($blue, $green);
+				@include transition(all .5s $easingSmooth);
+				@include transform-origin(left top);
+				@include transform(scale(0,1));
+				height: 45%;
+				z-index: -1;
+			}
+		}
+
+		&:not(:last-of-type){
+			margin-bottom: 50px;
+		}
+
+		&.active span:before{
+			@include transform(scale(1,1));
+		}
+	}
+
+
+
+}

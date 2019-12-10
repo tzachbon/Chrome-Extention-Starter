@@ -1,0 +1,554 @@
+@import "./css_variables";
+@import "./mixins";
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, q, small, strong, sub, sup, dl, dt, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+article, aside, figure, figure img, figcaption, footer, header, nav, section, video, object {
+	display: block
+}
+
+a img {
+	border: 0
+}
+
+figure {
+	position: relative
+}
+
+figure img {
+	width: 100%
+}
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+li {
+	list-style: none
+}
+
+.show {
+	display: block
+}
+
+.hide {
+	display: none
+}
+
+.left {
+	float: left
+}
+
+.right {
+	float: right
+}
+
+.t_center {
+	text-align: center
+}
+
+.clear {
+	clear: both
+}
+
+html, body {
+	font-family: $font-body;
+	line-height: 1.3;
+	font-weight: 400;
+	overflow: auto;
+	font-size: 10px;
+	-webkit-font-smoothing: antialiased;
+	&.hp {
+		height: 100vh;
+		overflow: hidden;
+		position: fixed;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	//font-weight: 400;
+	font-family: $font-title;
+}
+
+::-moz-selection {
+	color: #fff;
+	text-shadow: none;
+	background-color: $green;
+}
+
+::selection {
+	color: #fff;
+	text-shadow: none;
+	background-color: $green
+}
+
+a, a:hover,
+a.active,
+a:visited {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus {
+	-moz-outline-style: none
+}
+
+a, a:active, a:focus {
+	outline: none
+}
+
+input, textarea, button, select {
+	border: none;
+	padding: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	box-shadow: none;
+	outline: none;
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.hover {
+	@include transition(opacity .2s);
+	cursor: pointer;
+	&:hover {
+		opacity: .65
+	}
+}
+
+.upper {
+	text-transform: uppercase
+}
+
+.inline_block_mid {
+	display: inline-block;
+	vertical-align: middle
+
+}
+
+.linethrough {
+	text-decoration: line-through
+}
+
+@include keyframes(iconActive) {
+	0%, 100% {
+		@include transform(scale(1));
+	}
+	60% {
+		@include transform(scale(1.1));
+	}
+}
+
+
+@include keyframes(fadeIn) {
+	from {
+		opacity: .001
+	}
+	to {
+		opacity: .99
+	}
+}
+
+@include keyframes(fadeOut) {
+	from {
+		opacity: .99
+	}
+	to {
+		opacity: .001
+	}
+}
+
+@include keyframes(bounce) {
+	0%, 100% {
+		@include transform(translateY(0));
+
+	}
+	60% {
+		@include transform(translateY(-2px));
+	}
+}
+
+@include keyframes(bottomIn) {
+	from {
+		opacity: 0.01;
+		@include transform(translateY(20px));
+
+	}
+	to {
+		opacity: 1;
+		@include transform(translateY(0));
+	}
+}
+
+img {
+	@include user-select('none');
+}
+
+@include keyframes(softFromBottom) {
+	from {
+		opacity: 0.01;
+		@include transform(translateY(10px));
+
+	}
+	to {
+		opacity: 1;
+		@include transform(translateY(0));
+	}
+}
+
+@include keyframes(softFromTop) {
+	from {
+		opacity: 0.01;
+		@include transform(translateY(-10px));
+
+	}
+	to {
+		opacity: 1;
+		@include transform(translateY(0));
+	}
+}
+
+// ----------- keyframes ------------------  //
+
+@include keyframes(breath) {
+	0%, 100% {
+		@include transform(matrix(1, 0, 0, 1, 0, 0))
+
+	}
+	100% {
+		@include transform(matrix(1.05, 0, 0, 1.05, 0, 0))
+	}
+}
+
+@include keyframes(spin) {
+	from {
+		@include transform(rotate(0deg))
+
+	}
+	to {
+		@include transform(rotate(360deg))
+	}
+}
+
+@include keyframes(scaleIn) {
+	from {
+		opacity: 0.01;
+		@include transform(matrix(0.9, 0, 0, 0.9, 0, 0))
+
+	}
+	to {
+		opacity: 1;
+		@include transform(matrix(1, 0, 0, 1, 0, 0))
+	}
+}
+
+@include keyframes(scaleRight) {
+	from {
+		@include transform(scale(0, 1))
+	}
+	to {
+		@include transform(scale(1, 1))
+	}
+}
+
+@include keyframes(scaleOut) {
+	from {
+		opacity: 0.99;
+		@include transform(matrix(1, 0, 0, 1, 0, 0))
+	}
+	to {
+		opacity: 0.01;
+		@include transform(matrix(0.7, 0, 0, 0.7, 0, 0))
+	}
+}
+
+@include keyframes(fromRight) {
+	from {
+		opacity: .01;
+		@include transform(translateX(30px))
+	}
+	to {
+		opacity: 1;
+		@include transform(translateX(0))
+	}
+}
+
+@include keyframes(titleIn) {
+	from {
+		@include transform(translateY(100%));
+
+	}
+	to {
+		@include transform(translateY(0));
+	}
+}
+
+
+
+@include keyframes(ripples) {
+	0% {
+		opacity: 0.01;
+		@include transform(scale(.8));
+	}
+	50% {
+		opacity: .5;
+		@include transform(scale(1.4));
+	}
+	100% {
+		opacity: 0.01;
+		@include transform(scale(2));
+	}
+}
+
+@include keyframes(icons1) {
+	0%, 60%, 100% {
+		opacity: 0.01;
+	}
+	10%, 50% {
+		opacity: 1;
+	}
+}
+
+@include keyframes(icons2) {
+	0%, 50%, 100% {
+		opacity: 0.01;
+	}
+	60%, 90% {
+		opacity: 1;
+	}
+}
+
+@include keyframes(emptyNetOdd) {
+	0% {
+		opacity: 0;
+		@include transform(translate(-20px, 0) scale(0) rotate(-20deg))
+	}
+	33% {
+		opacity: 1;
+		@include transform(translate(10px, 90px) scale(.6) rotate(5deg))
+	}
+	66% {
+		opacity: 1;
+		@include transform(translate(90px, 220px) scale(.8) rotate(30deg))
+	}
+	100% {
+		opacity: 0;
+		@include transform(translate(140px, 400px) scale(.5) rotate(60deg))
+	}
+}
+
+@include keyframes(emptyNetEven) {
+	0% {
+		opacity: 0;
+		@include transform(translate(30px, 0) scale(0) rotate(0deg))
+	}
+	30% {
+		opacity: 1;
+		@include transform(translate(-30px, 100px) scale(.7) rotate(-30deg))
+	}
+	70% {
+		opacity: 1;
+		@include transform(translate(-90px, 220px) scale(1) rotate(-90deg))
+	}
+	100% {
+		opacity: 0;
+		@include transform(translate(-140px, 400px) scale(.4) rotate(-230deg))
+	}
+}
+
+@include keyframes(emptyNetCenter) {
+	0% {
+		opacity: 0;
+		@include transform(translate(30, 0) scale(0) rotate(120deg))
+	}
+	30% {
+		opacity: 1;
+		@include transform(translate(-30px, 100px) scale(.5) rotate(-30deg))
+	}
+	70% {
+		opacity: 1;
+		@include transform(translate(10px, 220px) scale(.7) rotate(90deg))
+	}
+	100% {
+		opacity: 0;
+		@include transform(translate(5px, 400px) scale(.3) rotate(-50deg))
+	}
+}
+
+
+
+.enterAnim {
+
+	.title-line {
+		position: relative;
+		overflow: hidden;
+		display: block;
+		will-change: transform;
+		span {
+			@include transform(translateY(100%));
+			display: block;
+			@include animation(titleIn .7s $easing both);
+		}
+	}
+
+}
+
+.column {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1080px;
+	padding-right: 20px;
+	padding-left: 20px;
+	&.wide{
+		max-width: 1160px;
+	}
+	&.full{
+		position: relative;
+		max-width: 1120px;
+		min-height: 100%;
+	}
+	&.narrow{
+		position: relative;
+		max-width: 920px;
+		padding-right: 40px;
+		padding-left: 40px;
+		@media #{$media-phone-portrait} {
+			padding-right: 20px;
+			padding-left: 20px;
+		}
+
+	}
+}
+
+
+
+
+
+@include keyframes(bgOut){
+	from{
+		@include transform(scale(1,1));
+	}
+	to{
+		@include transform(scale(0,1));
+	}
+}
+
+
+
+.form-page{
+	min-height: 100vh;
+	padding-top: 15vh;
+	position: relative;
+	z-index: 0;
+	@media #{$media-tablet-portrait} {
+		padding-top: 0;
+	}
+
+	.half-bg{
+		width: 50%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		position: fixed;
+		z-index: -1;
+		&:after{
+			content: '';
+			@include fullAbsBg;
+			@include transform-origin(right);
+		}
+		&.BGImg-loaded:after{
+			@include animation(bgOut .5s .2s $easing both);
+		}
+		@media #{$media-tablet-portrait} {
+			width: 100%;
+			height: 55vh;
+			position: relative;
+		}
+	}
+
+	> .column{
+		position: relative;
+		opacity: .01;
+		@include animation(softFromBottom .7s $easing both);
+		@media #{$media-tablet-portrait} {
+			padding-top: 20px;
+		}
+	}
+
+	h1{
+		font-weight: bold;
+		color: #fff;
+		font-size: 7.2rem;
+		padding-bottom: 15px;
+		border-bottom: 1px solid;
+		@media #{$media-tablet-portrait} {
+			border-bottom: none;
+			font-size: 5.2rem;
+			position: absolute;
+			bottom: 100%;
+			padding-bottom: 20px;
+			width: 100%;
+			left: 20px
+		}
+		span{
+			display: block;
+			max-width: 50%;
+			padding-right: 20px;
+			@media #{$media-tablet-portrait} {
+				max-width: 100%;
+				padding-right: 0;
+			}
+		}
+
+	}
+
+
+
+}
+
+.RootComponent{
+	overflow: hidden;
+}
+
+
+.sub-title{
+	font-size: 5.2rem;
+	@include inline-block-top;
+	@media #{$media-tablet-portrait} {
+		font-size: 4.6rem;
+	}
+	@media #{$media-phone-landscape} {
+		font-size: 3.8rem;
+	}
+	.title-line {
+		position: relative;
+		overflow: hidden;
+		display: block;
+		will-change: transform;
+		@include listTransitionDelay(80, 2);
+		span {
+			@include transform(translateY(100%));
+			display: block;
+			@include transition(all .7s $easing);
+			@include transition-delay(inherit);
+		}
+	}
+
+	&.active{
+		.title-line span {
+			@include transform(translateY(0));
+		}
+	}
+}
+
+
+
+

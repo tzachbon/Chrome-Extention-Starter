@@ -1,0 +1,337 @@
+@import './globals';
+
+
+.Button {
+    cursor          : pointer;
+    position        : relative;
+    white-space     : nowrap;
+    color           : #fff;
+    font-size       : 2rem;
+    font-weight     : 300;
+    padding         : 15px 15px 15px 30px;
+    display         : inline-block;
+    background-color: transparent;
+    vertical-align  : top;
+    font-family     : $font-body;
+    @include border-radius(50px);
+    will-change: transform;
+
+    @media #{$media-phone-portrait} {
+        padding: 12px 12px 12px 25px;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        @include border-radius(50px);
+        @include fullAbsBg;
+        z-index: -1;
+        @include transition(all .25s $easing);
+        opacity            : 0;
+        backface-visibility: hidden;
+    }
+
+    &:before {
+        @include horizontal-gradient($blue, $green);
+        box-shadow: 0 0 0 0 rgba(18, 168, 192, 0);
+    }
+
+
+    &:hover {
+        &:before {
+            opacity   : .8;
+            box-shadow: 0 0 0 4px rgba(18, 168, 192, 0.6);
+        }
+
+        .Icon.icon-arrow-down {
+            &:before {
+                @include transform(translateY(5px));
+            }
+
+            &:after {
+                @include transform(rotate(0deg));
+                border-left-color: rgba(255, 255, 255, .8);
+            }
+        }
+
+        .Icon.icon-arrow-right {
+            &:before {
+                @include transform(translateX(5px));
+            }
+
+            &:after {
+                @include transform(rotate(-45deg));
+
+                border: {
+                    right-color : transparent;
+                    bottom-color: transparent;
+                }
+            }
+        }
+    }
+
+
+
+    .Icon,
+    .label {
+        @include inline-block-mid
+    }
+
+    .Icon {
+        font-size  : 3rem;
+        margin-left: 25px;
+
+        @media #{$media-phone-portrait} {
+            font-size  : 2.8rem;
+            margin-left: 15px;
+        }
+
+        &.icon-arrow-down,
+        &.icon-arrow-right {
+            padding                    : 1px;
+            position                   : relative;
+            -webkit-backface-visibility: hidden;
+
+            &:before {
+                @include transition(all .25s $easing);
+                display: block;
+            }
+
+            &:after {
+                content: '';
+                @include fullAbsBg;
+                @include round;
+                @include transition(all .25s $easing);
+
+                border: {
+                    color: rgba(255, 255, 255, .8);
+                    style: solid;
+                    width: 1px;
+                }
+            }
+        }
+
+        //down
+        &.icon-arrow-down {
+            &:before {
+                @include transform(translateY(-5px));
+            }
+
+            &:after {
+                @include transform(rotate(135deg));
+                border-left-color  : transparent;
+                border-bottom-color: transparent;
+            }
+        }
+
+        //right
+        &.icon-arrow-right {
+            &:before {
+                @include transform(translateX(-5px));
+            }
+
+            &:after {
+                @include transform(rotate(180deg));
+                border-right-color: transparent;
+            }
+        }
+    }
+
+    .label {
+        font-size: 2.1rem;
+
+        @media #{$media-phone-portrait} {
+            font-size: 1.9rem;
+        }
+    }
+
+
+
+
+    //white
+    &.Button-white {
+        &:before {
+            display: none;
+        }
+
+        &:after {
+            box-shadow: 0 0 0 1px #fff;
+            opacity   : .65;
+            @include transition(all .25s $easing);
+        }
+
+        &:hover:after {
+            opacity   : .8;
+            box-shadow: 0 0 0 2px #fff;
+        }
+    }
+
+    //small
+    &.Button-small {
+        padding  : 5px 15px;
+        font-size: 1.4rem;
+        @include border-radius(30px);
+
+        .label {
+            font-size: 1.4rem;
+        }
+    }
+
+
+    //primary
+    &.Button-primary {
+        &:after {
+            @include horizontal-gradient($green, $blue);
+            opacity: .8;
+            @include transition(opacity .25s $easing);
+        }
+
+        &:hover:after {
+            opacity: 0;
+        }
+    }
+
+
+
+}
+
+
+
+.FieldWrapper {
+    position  : relative;
+    margin    : 32px 0;
+    text-align: left;
+    @include animation(softFromBottom 0.2s $easing both);
+    @include listAnimationDelay(80, 6);
+
+    .input,
+    .textarea,
+    .select {
+        @include searchInput;
+        width: 100%;
+    }
+
+    option {
+        border-radius: 0;
+    }
+
+    .textarea {
+        height: 65px;
+        resize: none;
+        @include transition(all 0.3s $easingSmooth);
+
+        &:focus {
+            height: 260px;
+        }
+    }
+
+    label {
+        position: absolute;
+        top     : 32px;
+        padding : 3px 10px;
+        @include border-radius(20px);
+        @include transform(translateY(-50%));
+        @include transition(all 0.2s $easingSmooth);
+        font-size     : 1.8rem;
+        font-weight   : 300;
+        color         : $white-light;
+        pointer-events: none;
+        left          : 20px;
+
+        &.label-checkbox {
+            position      : relative;
+            top           : 5px;
+            left          : 0;
+            padding       : 0;
+            cursor        : pointer;
+            pointer-events: all;
+        }
+    }
+
+    .checkbox {
+        padding: 0 1rem 0 0;
+
+        .MuiSvgIcon-root {
+            font-size: 3rem;
+            fill     : #ccc;
+        }
+
+        &.checkbox-error {
+            .MuiSvgIcon-root {
+                fill: #ff5779;
+            }
+        }
+    }
+
+    &.req:after {
+        content : "";
+        position: absolute;
+        left    : 20px;
+        top     : 33px;
+        @include transform(translateY(-50%) scale(1, 1));
+        width           : 1px;
+        height          : 12px;
+        background-color: $red;
+        @include transition(all 0.3s $easing);
+    }
+
+    &.full {
+        label {
+            top             : 0;
+            left            : 35px;
+            background-color: $grey-dark;
+            font-size       : 1.3rem;
+            font-weight     : 400;
+            color           : #fff;
+        }
+
+        &.req:after {
+            @include transform(translateY(-50%) scale(1, 0));
+        }
+    }
+}
+
+
+.form-control-container {
+    position: relative;
+
+    .error-msg {
+        position : absolute;
+        color    : #ff5779;
+        font-size: 1.25rem;
+        bottom   : -20px;
+        left     : 5%;
+        @include animation(softFromBottom 0.2s $easing both);
+        @include listAnimationDelay(80, 6);
+    }
+
+    .arrow-down {
+        position    : absolute;
+        top         : 50%;
+        right       : 5%;
+        width       : 0;
+        height      : 0;
+        border-left : 8px solid transparent;
+        border-right: 8px solid transparent;
+
+        border-top: 8px solid #ccc;
+    }
+
+
+}
+
+// @keyframes slide-top {
+
+// }
+
+@media (max-width: 600px) {
+    .form-control-container {
+        .error-msg {
+            bottom: -32px;
+        }
+
+        .FieldWrapper {
+            margin: 40px 0;
+        }
+    }
+}
