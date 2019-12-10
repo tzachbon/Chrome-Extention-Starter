@@ -1,6 +1,7 @@
 @import "./css_variables";
 @import "./mixins";
 
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, q, small, strong, sub, sup, dl, dt, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	margin: 0;
@@ -49,12 +50,20 @@ li {
 	float: right
 }
 
-.t_center {
+.t-center {
 	text-align: center
 }
 
 .clear {
 	clear: both
+}
+
+.flex-center {
+	@include flex-center;
+}
+
+.abs-center {
+	@include abs-center;
 }
 
 html, body {
