@@ -1,6 +1,5 @@
 import { Chrome } from '../models/chrome.model';
-import { useState, useEffect } from 'react';
-import { Callback } from '../models/general.model'
+import { Callback } from '../models/general.model';
 
 export function onRequest<T = any>
     (

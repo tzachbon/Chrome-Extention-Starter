@@ -5,6 +5,10 @@ export { ChromeListener }
 export namespace Chrome {
     export type Action = 'message' | 'scan'
 
+    export interface Message<T> extends Request<T> {
+
+    }
+
     export interface Request<T = any> {
         action: Action;
         payload: T
