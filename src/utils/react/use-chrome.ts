@@ -1,25 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Chrome, ChromeListener } from '../../models/chrome.model';
 import { Callback } from '../../models/general.model'
 
-export const useChromeStorage = (key: string) => {
-    const [item, setItem] = useState(null);
+export const useChromeStorage = <T = any>(key: string) => {
+    const [item, setItem] = useState<T>(null);
     const storage = chrome.storage.sync;
 
-    useEffect(() => {
-        let unmounted = false;
-        storage.get(key, (obj) => {
-            if (!unmounted) {
-                setItem(obj[key])
-            }
-        })
+    let unmounted = false
+    useEffect(() => () => unmounted = true, []);
+    useCallback(() => {
+        storage.get(key, (obj) => !unmounted && item !== obj[key] && setItem(obj[key]))
+    }, [item]);
 
-        return () => {
-            unmounted = true;
-        }
-    }, [])
 
-    const setLocalItem = <T = any>(value: T) => {
+    const setLocalItem = (value: T) => {
         storage.set({ [key]: value }, () => {
             setItem(value);
         });
@@ -34,6 +28,7 @@ export const useChromeStorage = (key: string) => {
 
     return { item, setItem: setLocalItem, removeItem: removeLocalItem };
 }
+
 
 
 export const useChromeListener = <T = any, J = any>(act: Chrome.Action, callBack?: Callback<T>) => {
