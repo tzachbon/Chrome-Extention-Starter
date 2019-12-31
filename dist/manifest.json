@@ -1,6 +1,6 @@
 {
   "name": "Chrome-Extention-Starter",
-  "author": "ymdevs",
+  "author": "Tzach Bonfil",
   "version": "1.0.0",
   "description": "Full chrome extension stater! React,Typescript , MobX, Chrome Listener, Scss with styles, Web Worker, Material UI and many more...!",
   "icons": {
