@@ -24,7 +24,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Kidsafe",
+    "default_title": "Starter",
     "default_icon": "icon48.png",
     "default_popup": "popup.html"
   },
