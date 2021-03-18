@@ -1,54 +1,27 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Chrome, ChromeListener } from '../../models/chrome.model';
-import { Callback } from '../../models/general.model'
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ChromeStorage } from '../../core';
 
 export const useChromeStorage = <T = any>(key: string) => {
-    const [item, setItem] = useState<T>(null);
-    const storage = chrome.storage.sync;
+    const [state, setState] = useState<T>()
+    const chromeStorage = useMemo(() => new ChromeStorage<T>(key), [key])
 
-    let unmounted = false
-    useEffect(() => () => unmounted = true, []);
-    useCallback(() => {
-        storage.get(key, (obj) => !unmounted && item !== obj[key] && setItem(obj[key]))
-    }, [item]);
-
-
-    const setLocalItem = (value: T) => {
-        storage.set({ [key]: value }, () => {
-            setItem(value);
-        });
-    }
-
-    const removeLocalItem = () => {
-        storage.remove(key, () => {
-            setItem(null);
+    useEffect(() => {
+        const { remove } = chromeStorage.subscribe(data => {
+            setState(data)
         })
-    }
 
+        return () => { remove() }
+    }, []);
 
-    return { item, setItem: setLocalItem, removeItem: removeLocalItem };
-}
+    const setStorage = useCallback(
+        (data: T) => {
+            chromeStorage.set(data)
+        },
+        [chromeStorage],
+    )
 
-
-
-export const useChromeListener = <T = any, J = any>(act: Chrome.Action, callBack?: Callback<T>) => {
-    const [action, setAction] = useState(act);
-    const chromeListener = new ChromeListener('POPUP', action);
-    const [message, setMessage] = useState(null);
-
-    const sendMessage = <T = any>(message: T) => {
-        chromeListener.sendMessage(message);
-    }
-
-    useEffect(() => chromeListener.subscribe(
-        (value) => {
-            setMessage(value);
-            if (callBack) {
-                callBack(message)
-            }
-        }
-    ).unsubscribe, [action])
-
-    return { message, setAction, sendMessage };
-
+    return { 
+        storage: state,
+        setStorage
+     };
 }

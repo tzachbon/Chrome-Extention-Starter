@@ -1,8 +1,8 @@
 {
-  "name": "Chrome-Extention-Starter",
+  "name": "YouTube Liveshare",
   "author": "Tzach Bonfil",
   "version": "1.0.0",
-  "description": "Full chrome extension stater! React,Typescript , MobX, Chrome Listener, Scss with styles, Web Worker, Material UI and many more...!",
+  "description": "Share youtube",
   "icons": {
     "128": "icon128.png"
   },
@@ -24,14 +24,14 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Starter",
+    "default_title": "YouTube Liveshare",
     "default_icon": "icon48.png",
     "default_popup": "popup.html"
   },
   "web_accessible_resources": [],
   "content_scripts": [
     {
-      "js": ["js/eventPage.js", "js/webWorker.js"],
+      "js": ["js/background.js"],
       "matches": ["*://*/*"]
     }
   ]
